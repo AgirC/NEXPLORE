@@ -1,0 +1,19 @@
+<!--header-->
+<header></header>
+
+<!--Content-->
+<div class="content" *ngIf="!spinner">
+    <span class="title">List of duties</span>
+
+    <!--Duties for-->
+    <div class="duties">
+        <duty *ngFor="let duty of duties" [id]="duty.id" [name]="duty.name" (deleteDuty)="deleteDuty($event)" (editDuty)="openDialog($event)"></duty>
+    </div>
+
+    <!--button for creating new Duty-->
+    <button mat-button (click)="openDialog()">New Duty</button>
+    
+</div>
+
+<!--spinner for loading process-->
+<mat-spinner class="spin" *ngIf="spinner"></mat-spinner>
