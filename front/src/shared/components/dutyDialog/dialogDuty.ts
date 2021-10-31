@@ -1,5 +1,5 @@
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from '@angular/material/dialog';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, Inject } from '@angular/core';
 
 @Component({
@@ -21,12 +21,14 @@ export class DutyDialog {
 
     ngOnInit() {
         this.form = this.fb.group({
-            name: [this.name, []],
+            name: [this.name, Validators.required],
         });
     }
 
     save() {
-        this.dialogRef.close(this.form.value);
+        if (this.form.valid) {
+            this.dialogRef.close(this.form.value);
+        }
     }
 
     close() {
